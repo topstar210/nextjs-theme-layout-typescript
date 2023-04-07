@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 
-const themes = [{ name: 'Light' }, { name: 'Dark' }, { name: 'Pink' }];
+const themes = [{ name: 'Light' }, { name: 'Theme1' }, { name: 'Pink' }];
 
-const ThemeChanger = ({ currTheme }: any) => {
+const ThemeChanger = ({ setCurrTheme, currTheme }: any) => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), []);
+
+  useEffect(()=>{
+    console.log("currTheme", currTheme)
+    setTheme(currTheme)
+  },[currTheme])
 
   if (!mounted) return null;
 
@@ -27,7 +32,7 @@ const ThemeChanger = ({ currTheme }: any) => {
           className="bg-white text-gray-800 border-gray-800 border py-1 px-3"
           onChange={(e) => {
             setTheme(e.currentTarget.value)
-            currTheme(e.currentTarget.value)
+            setCurrTheme(e.currentTarget.value)
           }}
           value={theme}
         >

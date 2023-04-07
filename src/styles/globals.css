@@ -11,7 +11,7 @@
   --primary-light: theme('colors.gray.500');
 }
 
-[data-theme='dark'] {
+[data-theme='theme1'] {
   --background: theme('colors.black');
   --background-secondary: theme('colors.gray.800');
 
